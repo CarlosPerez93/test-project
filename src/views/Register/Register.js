@@ -1,20 +1,27 @@
 import { UserAddOutlined } from '@ant-design/icons'
 import { Button, Form, Input, DatePicker, Divider } from 'antd'
-
+import useFetch from '../../hooks/useFetch'
 import './register.scss'
 
 const { Item } = Form
 
 const Register = () => {
-  const onChange = (date, dateString) => {
-    console.log(date, dateString)
-  }
-  const onFinish = (values) => {
-    console.log('Success:', values)
-  }
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo)
-  }
+  const onChange = (date, dateString) => console.log(date, dateString)
+
+  const onFinish = (values) => console.log('Success:', values)
+
+  const onFinishFailed = (errorInfo) => console.log('Failed:', errorInfo)
+
+  const initialValues = { remember: true }
+  const wrapperCol = { offset: 8, span: 16 }
+
+  const { loading, data } = useFetch('https://peticiones.online/api/products', {
+    method: 'POST', // or 'PUT'
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
 
   return (
     <div className="register">
@@ -24,19 +31,12 @@ const Register = () => {
           <Form
             /// Form={Form}
             name="basic"
-            labelCol={{
-              span: 8
-            }}
-            wrapperCol={{
-              span: 16
-            }}
-            initialValues={{
-              remember: true
-            }}
+            initialValues={initialValues}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
             autoComplete="off"
-            D
+            labelCol={{ span: 8 }}
+            wrapperCol={{ span: 16 }}
           >
             <h2>Register</h2>
             <UserAddOutlined className="icon" />
@@ -46,10 +46,7 @@ const Register = () => {
               label="First Name"
               name="FirstName"
               rules={[
-                {
-                  required: true,
-                  message: 'Please input your First Name!'
-                }
+                { required: true, message: 'Please input your First Name!' }
               ]}
             >
               <Input />
@@ -59,10 +56,7 @@ const Register = () => {
               label="Second Name"
               name="SecondName"
               rules={[
-                {
-                  required: true,
-                  message: 'Please input your Second Name!'
-                }
+                { required: true, message: 'Please input your Second Name!' }
               ]}
             >
               <Input />
@@ -99,10 +93,7 @@ const Register = () => {
               label="Date Birth"
               name="DateBirth"
               rules={[
-                {
-                  required: true,
-                  message: 'Please input your Date Birth!'
-                }
+                { required: true, message: 'Please input your Date Birth!' }
               ]}
             >
               <DatePicker onChange={onChange} />
@@ -149,13 +140,7 @@ const Register = () => {
             >
               <Input.Password />
             </Item>
-            <Item
-              className="item"
-              wrapperCol={{
-                offset: 8,
-                span: 16
-              }}
-            >
+            <Item className="item" wrapperCol={wrapperCol}>
               <Button type="primary" htmlType="submit">
                 Register
               </Button>

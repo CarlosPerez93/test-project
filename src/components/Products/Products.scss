@@ -1,0 +1,73 @@
+.products {
+  background: rgba(94, 94, 94, 0.719);
+  width: 350px;
+  height: 550px;
+  border-radius: 20px;
+  color: white;
+  margin: 3%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5px;
+  max-width: 1080px;
+  box-sizing: border-box;
+  padding-bottom: 3%;
+
+  :hover {
+    animation: gt 5s linear;
+  }
+  img {
+    width: 250px !important;
+    height: 250px;
+  }
+  ul {
+    list-style: none;
+    margin: auto;
+    text-align: center;
+
+    #name {
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      font-size: 30px;
+    }
+    #price {
+      font-size: 30px;
+    }
+  }
+  button {
+    font-size: large;
+    background: rgba(199, 199, 12, 0.473);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  }
+}
+
+@keyframes bk {
+  0% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes gt {
+  0% {
+    margin-top: 5px;
+    /*margin-left: 0px;*/
+  }
+  25% {
+    margin-top: 10px;
+    /*margin-left: 10px;*/
+  }
+  50% {
+    margin-top: 15px;
+    /*margin-left: 20px;*/
+  }
+  75% {
+    margin-top: 20px;
+    /*margin-left: 10px;*/
+  }
+  100% {
+    margin-top: 25px;
+    /*margin-left: 0px;*/
+  }
+}

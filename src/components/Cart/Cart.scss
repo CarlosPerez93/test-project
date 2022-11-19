@@ -1,0 +1,21 @@
+.modal {
+  width: auto;
+  height: auto;
+  padding: 1px;
+  color: white;
+  margin-right: 100px;
+
+  &__cart {
+    font-size: 25px;
+    background: rgba(0, 0, 0, 0.595);
+    margin: 5px 0;
+    top: 0;
+    right: 10vw;
+
+    h3 {
+      color: white;
+      text-align: center;
+      font-size: 30px;
+    }
+  }
+}

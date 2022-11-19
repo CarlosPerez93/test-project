@@ -13,11 +13,8 @@
 
     &--img {
       background-image: url('https://images.pexels.com/photos/5872348/pexels-photo-5872348.jpeg?cs=srgb&dl=pexels-max-fischer-5872348.jpg&fm=jpg');
-      background-size: cover;
-      background-repeat: no-repeat;
-      width: 50%;
-      height: 100%;
-      padding: 0%;
+      background-size: 100% 100%;
+      width: 70%;
     }
 
     &--form {

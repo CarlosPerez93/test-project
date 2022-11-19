@@ -1,20 +1,17 @@
 import { LoginOutlined } from '@ant-design/icons'
 import { Button, Checkbox, Form, Input } from 'antd'
-import { getUsers } from '../../common/api/Api'
 
 import './Login.scss'
 
 const { Item } = Form
 
 const Login = () => {
-  const onFinish = (values) => {
-    console.log('Success:', values)
-  }
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo)
-  }
+  const onFinish = (values) => console.log('Success:', values)
 
-  console.log('sssss', getUsers)
+  const onFinishFailed = (errorInfo) => console.log('Failed:', errorInfo)
+
+  const initialValues = { remember: true }
+  const wrapperCol = { offset: 8, span: 16 }
 
   return (
     <div className="login">
@@ -23,15 +20,7 @@ const Login = () => {
         <div className="login__container--form">
           <Form
             name="basic"
-            labelCol={{
-              span: 8
-            }}
-            wrapperCol={{
-              span: 16
-            }}
-            initialValues={{
-              remember: true
-            }}
+            initialValues={initialValues}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
             autoComplete="off"
@@ -43,10 +32,7 @@ const Login = () => {
               label="Username"
               name="username"
               rules={[
-                {
-                  required: true,
-                  message: 'Please input your username!'
-                }
+                { required: true, message: 'Please input your username!' }
               ]}
             >
               <Input />
@@ -57,10 +43,7 @@ const Login = () => {
               label="Password"
               name="password"
               rules={[
-                {
-                  required: true,
-                  message: 'Please input your password!'
-                }
+                { required: true, message: 'Please input your password!' }
               ]}
             >
               <Input.Password />
@@ -69,21 +52,12 @@ const Login = () => {
             <Item
               name="remember"
               valuePropName="checked"
-              wrapperCol={{
-                offset: 8,
-                span: 16
-              }}
+              wrapperCol={wrapperCol}
             >
               <Checkbox>Remember me</Checkbox>
             </Item>
 
-            <Item
-              className="item"
-              wrapperCol={{
-                offset: 8,
-                span: 16
-              }}
-            >
+            <Item className="item" wrapperCol={wrapperCol}>
               <Button type="primary" htmlType="submit">
                 Login
               </Button>
