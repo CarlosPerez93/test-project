@@ -1,23 +1,19 @@
 .products {
   background: rgba(94, 94, 94, 0.719);
-  width: 350px;
-  height: 550px;
+  width: 450px;
+  height: 450px;
   border-radius: 20px;
   color: white;
-  margin: 3%;
+  margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 5px;
   max-width: 1080px;
   box-sizing: border-box;
-  padding-bottom: 3%;
-
-  :hover {
-    animation: gt 5s linear;
-  }
+  border: solid;
   img {
-    width: 250px !important;
+    width: 250px;
     height: 250px;
   }
   ul {

@@ -45,17 +45,18 @@
     justify-content: center;
     color: white;
     padding: 100px;
-    overflow: hidden;
     p {
       font-size: 300px;
     }
     &__products {
-      display: grid;
-      padding-left: 15%;
+      overflow: hidden;
+      display: flex; /* 
       grid-template-columns: repeat(3, 1fr);
-      grid-gap: 10px;
-      width: 100%;
-      justify-content: center;
+      grid-gap: 10px; */
+      width: 100hv;
+      height: 100%;
+      padding: 2% 2%;
+      justify-content: space-around;
       box-sizing: border-box;
       margin: auto;
     }

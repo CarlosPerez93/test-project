@@ -1,12 +1,32 @@
 import { LoginOutlined } from '@ant-design/icons'
 import { Button, Checkbox, Form, Input } from 'antd'
+import axios from 'axios'
+
+import { redirect } from 'react-router-dom'
 
 import './Login.scss'
 
 const { Item } = Form
 
+export let token
 const Login = () => {
-  const onFinish = (values) => console.log('Success:', values)
+  const onFinish = async (values) => {
+    try {
+      await axios
+        .post('http://localhost:4000/login/login', values)
+        .then((res) => {
+          token = res.data.token
+          localStorage.setItem('token', token)
+          if (!token) {
+            return redirect('/login')
+          }
+
+          return redirect('/home')
+        })
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const onFinishFailed = (errorInfo) => console.log('Failed:', errorInfo)
 
@@ -29,15 +49,18 @@ const Login = () => {
             <LoginOutlined className="icon" />
             <Item
               className="item"
-              label="Username"
-              name="username"
+              label="E-mail"
+              name="emailUser"
               rules={[
-                { required: true, message: 'Please input your username!' }
+                {
+                  type: 'email',
+                  required: true,
+                  message: 'Please input your e-mail!'
+                }
               ]}
             >
               <Input />
             </Item>
-
             <Item
               className="item"
               label="Password"

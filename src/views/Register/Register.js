@@ -1,27 +1,27 @@
 import { UserAddOutlined } from '@ant-design/icons'
 import { Button, Form, Input, DatePicker, Divider } from 'antd'
-import useFetch from '../../hooks/useFetch'
+import { useNavigate } from 'react-router-dom'
+
+import axios from 'axios'
 import './register.scss'
 
 const { Item } = Form
 
 const Register = () => {
+  let navigate = useNavigate()
+
   const onChange = (date, dateString) => console.log(date, dateString)
 
-  const onFinish = (values) => console.log('Success:', values)
+  const onFinish = (values) => {
+    console.log('Success:', values)
+    axios.post('http://localhost:4000/user/postUser', values)
+    navigate('/login')
+  }
 
   const onFinishFailed = (errorInfo) => console.log('Failed:', errorInfo)
 
   const initialValues = { remember: true }
   const wrapperCol = { offset: 8, span: 16 }
-
-  const { loading, data } = useFetch('https://peticiones.online/api/products', {
-    method: 'POST', // or 'PUT'
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  })
 
   return (
     <div className="register">
@@ -44,7 +44,7 @@ const Register = () => {
             <Item
               className="item"
               label="First Name"
-              name="FirstName"
+              name="nombreUser"
               rules={[
                 { required: true, message: 'Please input your First Name!' }
               ]}
@@ -55,9 +55,7 @@ const Register = () => {
               className="item"
               label="Second Name"
               name="SecondName"
-              rules={[
-                { required: true, message: 'Please input your Second Name!' }
-              ]}
+              rules={[{ message: 'Please input your Second Name!' }]}
             >
               <Input />
             </Item>
@@ -76,34 +74,20 @@ const Register = () => {
             </Item>
             <Item
               className="item"
-              label="Second Last name"
-              name="SecondLastName"
-              rules={[
-                {
-                  required: true,
-                  message: 'Please input your Second Last name!'
-                }
-              ]}
-            >
-              <Input />
-            </Item>
-
-            <Item
-              className="item"
               label="Date Birth"
               name="DateBirth"
               rules={[
                 { required: true, message: 'Please input your Date Birth!' }
               ]}
             >
-              <DatePicker onChange={onChange} />
+              <DatePicker className="item__date" onChange={onChange} />
             </Item>
             <Divider />
 
             <Item
               className="item"
-              label="e-mail"
-              name="e-mail"
+              label="E-mail"
+              name="emailUser"
               rules={[
                 {
                   type: 'email',
@@ -130,7 +114,7 @@ const Register = () => {
             <Item
               className="item"
               label="Password"
-              name="Password"
+              name="password"
               rules={[
                 {
                   required: true,
