@@ -19,13 +19,35 @@ const Home = () => {
   const [visible, setVisible] = useState(false)
   const [productVisible, setProductVisible] = useState(false)
   const [cart, setCart] = useState([])
-  const [cartAdd, setCartAdd] = useState([])
   const [lisProducts, setListProducts] = useState()
+  const [isDelete, setIsDelete] = useState(false)
+  const [isEditProduct, setIsEditProduct] = useState(false)
 
   const handleShowCard = () => setVisible(!visible)
-  const handleShowCardAdd = () => {
-    setProductVisible(!productVisible)
+  const handleShowCardAdd = () => setProductVisible(!productVisible)
+
+  const deleteProduct = (id) => {
+    axios.delete(`http://localhost:4000/product/deleteProduct/${id}`, {
+      headers: { authorization: `Bearer ${token}` }
+    })
+    setIsDelete(true)
   }
+
+  const putProduct = (nombreProducto, precioProducto, idProduct) => {
+    axios.put(
+      'http://localhost:4000/product/putProduct',
+      {
+        nombreProducto,
+        precioProducto,
+        idProduct
+      },
+      {
+        headers: { authorization: `Bearer ${token}` }
+      }
+    )
+    setIsEditProduct(true)
+  }
+
   useEffect(() => {
     axios
       .get('http://localhost:4000/product/getProduct', {
@@ -33,8 +55,10 @@ const Home = () => {
       })
       .then((response) => {
         setListProducts(response.data)
+        setIsDelete(false)
+        setIsEditProduct(false)
       })
-  }, [lisProducts])
+  }, [isDelete, isEditProduct])
 
   return (
     <>
@@ -66,6 +90,8 @@ const Home = () => {
                   setCart={setCart}
                   lisProducts={lisProducts}
                   setListProducts={setListProducts}
+                  deleteProduct={deleteProduct}
+                  putProduct={putProduct}
                 />
               </Carousel>
             ))}
@@ -81,6 +107,7 @@ const Home = () => {
       <CartAddProduct
         productVisible={!productVisible}
         setProductVisible={handleShowCardAdd}
+        lisProducts={lisProducts}
       />
     </>
   )

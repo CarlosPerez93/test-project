@@ -1,4 +1,8 @@
-import { useEffect, useState } from 'react'
+import { Button } from 'antd'
+import { EditOutlined } from '@ant-design/icons'
+import { useState } from 'react'
+
+import { CardEditProduct } from '../CartEditProduct/CardEditProduct'
 import './Products.scss'
 
 export const Products = ({
@@ -6,10 +10,11 @@ export const Products = ({
   cart,
   setCart,
   lisProducts,
-  setListProducts
+  deleteProduct,
+  putProduct
 }) => {
-  const { idProducts, setIdProducts } = useState()
   const { nombreProducto, precioProducto, idProduct } = product
+  const [productEditVisible, setProductEditVisible] = useState(false)
 
   const addProduct = (id) => {
     const product = lisProducts.filter((value) => value.idProduct === id)
@@ -20,17 +25,24 @@ export const Products = ({
     const product = cart.filter((product) => product.idProduct !== id)
     setCart(product)
   }
-  const deleteProduct = (id) => {
-    const product = lisProducts.filter((value) => value.idProduct !== id)
-    setListProducts(product)
+  const handleShowCardEditProduct = () => {
+    setProductEditVisible(!productEditVisible)
   }
 
   return (
     <div className="products">
+      <Button
+        type="dashed"
+        className="products__btn"
+        onClick={handleShowCardEditProduct}
+      >
+        <EditOutlined />
+      </Button>
       <img
         src={
           'https://images.pexels.com/photos/5872348/pexels-photo-5872348.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
         }
+        alt="img"
       />
       <ul>
         <li id="nombreProducto">{nombreProducto}</li>
@@ -63,6 +75,14 @@ export const Products = ({
           </>
         )}
       </ul>
+      <CardEditProduct
+        productEditVisible={!productEditVisible}
+        setProductEditVisible={handleShowCardEditProduct}
+        idProduct={idProduct}
+        nombreProducto={nombreProducto}
+        precioProducto={precioProducto}
+        putProduct={putProduct}
+      />
     </div>
   )
 }

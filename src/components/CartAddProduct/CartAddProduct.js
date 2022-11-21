@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 import { Divider, Modal, Button, Form, Input, Space } from 'antd'
 import {
   AppstoreAddOutlined,
@@ -12,7 +13,7 @@ const { List, Item } = Form
 
 export const CartAddProduct = ({ productVisible, setProductVisible }) => {
   const token = localStorage.getItem('token')
-  const { decodedToken, isExpired } = useJwt(token)
+  const { decodedToken } = useJwt(token)
   let idUser
   localStorage.setItem('idUser', idUser)
   if (decodedToken) idUser = decodedToken.data.idUser

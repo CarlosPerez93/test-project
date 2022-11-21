@@ -11,6 +11,18 @@
   align-items: center;
   box-sizing: border-box;
   font-size: 200%;
+
+  &__btn {
+    width: 50px !important;
+    margin-left: 250px !important;
+    margin-top: 15px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    svg {
+      color: white;
+    }
+  }
   img {
     width: 50%;
     height: 50%;

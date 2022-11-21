@@ -1,6 +1,6 @@
 import { Spin } from 'antd'
 import { lazy, Suspense } from 'react'
-import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 const Home = lazy(() => import('../../views/Home/Home'))
 

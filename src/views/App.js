@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 import Public from '../routes/Public/RoutesPublic'
 import Private from '../routes/Private/RoutesPrivate'
 
