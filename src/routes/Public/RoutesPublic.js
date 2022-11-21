@@ -1,6 +1,5 @@
 import { lazy, Suspense } from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 const Login = lazy(() => import('../../views/Login/Login'))
 const Register = lazy(() => import('../../views/Register/Register'))
 

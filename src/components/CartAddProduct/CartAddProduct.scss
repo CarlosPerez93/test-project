@@ -1,0 +1,27 @@
+.modal {
+  margin: auto;
+  text-align: center;
+  color: black;
+  &__cartAddProduct {
+    &__header {
+      display: flex;
+      width: 30%;
+      margin: auto;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    &__body {
+      &__button {
+        border: transparent;
+        background-color: rgba(207, 146, 55, 0.774);
+      }
+    }
+  }
+}
+.ant-btn-primary:hover,
+.ant-btn-primary:focus {
+  color: #fff;
+  border-color: rgb(238, 174, 77);
+  background: rgb(207, 146, 55);
+}

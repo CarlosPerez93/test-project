@@ -1,30 +1,30 @@
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 import { LoginOutlined } from '@ant-design/icons'
 import { Button, Checkbox, Form, Input } from 'antd'
-import axios from 'axios'
-
-import { redirect } from 'react-router-dom'
 
 import './Login.scss'
 
 const { Item } = Form
 
-export let token
 const Login = () => {
+  const navigate = useNavigate()
+
   const onFinish = async (values) => {
     try {
-      await axios
+      const x = await axios
         .post('http://localhost:4000/login/login', values)
         .then((res) => {
-          token = res.data.token
+          const { token } = res.data
           localStorage.setItem('token', token)
-          if (!token) {
-            return redirect('/login')
+          if (token) {
+            navigate('/home')
           }
-
-          return redirect('/home')
         })
+
+      console.log(x)
     } catch (error) {
-      console.log(error)
+      navigate('/login')
     }
   }
 

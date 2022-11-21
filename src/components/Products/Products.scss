@@ -1,38 +1,49 @@
 .products {
   background: rgba(94, 94, 94, 0.719);
-  width: 450px;
-  height: 450px;
+  width: 70%;
+  height: 40%;
   border-radius: 20px;
   color: white;
   margin: auto;
+  padding-bottom: 5%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 5px;
-  max-width: 1080px;
   box-sizing: border-box;
-  border: solid;
+  font-size: 200%;
   img {
-    width: 250px;
-    height: 250px;
+    width: 50%;
+    height: 50%;
+    margin-top: 5%;
+    border-radius: 20px;
   }
   ul {
+    display: flex;
+    flex-direction: column;
     list-style: none;
     margin: auto;
-    text-align: center;
+    width: 100%;
+    height: auto;
+    padding-right: 10%;
+    #nombreProducto {
+      width: 100%;
 
-    #name {
       font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
       font-size: 30px;
+      margin: auto;
     }
-    #price {
+    #precioProducto {
+      width: 100%;
       font-size: 30px;
     }
   }
   button {
+    width: 100%;
     font-size: large;
-    background: rgba(199, 199, 12, 0.473);
+    background: rgba(207, 146, 55, 0.774);
+    border: transparent;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    margin: 10px 0 0 0;
   }
 }
 

@@ -1,6 +1,14 @@
+import { useEffect, useState } from 'react'
 import './Products.scss'
 
-export const Products = ({ product, cart, setCart, lisProducts }) => {
+export const Products = ({
+  product,
+  cart,
+  setCart,
+  lisProducts,
+  setListProducts
+}) => {
+  const { idProducts, setIdProducts } = useState()
   const { nombreProducto, precioProducto, idProduct } = product
 
   const addProduct = (id) => {
@@ -8,9 +16,13 @@ export const Products = ({ product, cart, setCart, lisProducts }) => {
     setCart([...cart, ...product])
   }
 
-  const deleteProduct = (id) => {
+  const deleteProductCart = (id) => {
     const product = cart.filter((product) => product.idProduct !== id)
     setCart(product)
+  }
+  const deleteProduct = (id) => {
+    const product = lisProducts.filter((value) => value.idProduct !== id)
+    setListProducts(product)
   }
 
   return (
@@ -24,9 +36,18 @@ export const Products = ({ product, cart, setCart, lisProducts }) => {
         <li id="nombreProducto">{nombreProducto}</li>
         <li id="precioProducto">${precioProducto}</li>
         {lisProducts ? (
-          <button type="button" onClick={() => addProduct(idProduct)}>
-            Add Car +
-          </button>
+          <>
+            <button type="button" onClick={() => addProduct(idProduct)}>
+              Add Car +
+            </button>
+            <button
+              className="products__buttonDel"
+              type="button"
+              onClick={() => deleteProduct(idProduct)}
+            >
+              Delete
+            </button>
+          </>
         ) : (
           <>
             <button type="button" onClick={() => addProduct(idProduct)}>
@@ -35,7 +56,7 @@ export const Products = ({ product, cart, setCart, lisProducts }) => {
             <button
               className="products__buttonDel"
               type="button"
-              onClick={() => deleteProduct(idProduct)}
+              onClick={() => deleteProductCart(idProduct)}
             >
               Delete
             </button>
