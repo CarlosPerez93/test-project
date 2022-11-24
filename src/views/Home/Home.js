@@ -1,12 +1,14 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Carousel, Button, Space } from 'antd'
 import {
   MenuFoldOutlined,
   ShoppingCartOutlined,
-  PlusOutlined
+  PlusOutlined,
+  LogoutOutlined
 } from '@ant-design/icons'
 
+import AuthContext from '../../context/AuthContext'
 import { Cart } from '../../components/Cart/Cart'
 import { Products } from '../../components/Products/Products'
 import { CartAddProduct } from '../../components/CartAddProduct/CartAddProduct'
@@ -15,7 +17,7 @@ import './Home.scss'
 
 const Home = () => {
   let token = localStorage.getItem('token')
-
+  const { logOut } = useContext(AuthContext)
   const [visible, setVisible] = useState(false)
   const [productVisible, setProductVisible] = useState(false)
   const [cart, setCart] = useState([])
@@ -64,12 +66,13 @@ const Home = () => {
     <>
       <div className="home">
         <div className="home__header">
-          <MenuFoldOutlined />
+          <MenuFoldOutlined className="home__header__menu" />
           <h1>Products</h1>
           <div className="home__header__countCard" onClick={handleShowCard}>
             <p>{cart.length}</p>
             <ShoppingCartOutlined />
           </div>
+          <LogoutOutlined className="home__header__logOut" onClick={logOut} />
         </div>
         <div className="home_body">
           <p>Take advantage of combos 50% off for a limited time only!</p>

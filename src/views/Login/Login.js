@@ -1,34 +1,14 @@
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { LoginOutlined } from '@ant-design/icons'
 import { Button, Checkbox, Form, Input } from 'antd'
-
+import AuthContext from '../../context/AuthContext'
 import './Login.scss'
+import { useContext } from 'react'
 
 const { Item } = Form
 
 const Login = () => {
-  const navigate = useNavigate()
-
-  const onFinish = async (values) => {
-    try {
-      const x = await axios
-        .post('http://localhost:4000/login/login', values)
-        .then((res) => {
-          const { token } = res.data
-          localStorage.setItem('token', token)
-          if (token) {
-            navigate('/home')
-          }
-        })
-
-      console.log(x)
-    } catch (error) {
-      navigate('/login')
-    }
-  }
-
-  const onFinishFailed = (errorInfo) => console.log('Failed:', errorInfo)
+  const { handleAuth, logIn, onFinishFailed } = useContext(AuthContext)
 
   const initialValues = { remember: true }
   const wrapperCol = { offset: 8, span: 16 }
@@ -41,12 +21,14 @@ const Login = () => {
           <Form
             name="basic"
             initialValues={initialValues}
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
+            onFinish={logIn}
+            onFinishFailed={{ onFinishFailed }}
             autoComplete="off"
           >
             <h2>Login</h2>
-            <LoginOutlined className="icon" />
+            <Link to={'/register'}>
+              <LoginOutlined className="icon" />
+            </Link>
             <Item
               className="item"
               label="E-mail"

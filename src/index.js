@@ -1,20 +1,21 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import './index.css'
-import App from './views/App'
 import reportWebVitals from './reportWebVitals'
-import { QueryClient, QueryClientProvider } from 'react-query'
+import { AuthProvider } from './context/AuthContext'
+import { BrowserRouter as Router } from 'react-router-dom'
+import App from './views/App'
+
+import './index.css'
 import 'antd/dist/antd.css'
 
-const queryClient = new QueryClient()
-
-const root = ReactDOM.createRoot(document.getElementById('root'))
-root.render(
-  <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <App />
-    </QueryClientProvider>
-  </React.StrictMode>
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <Router>
+    <AuthProvider>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </AuthProvider>
+  </Router>
 )
 
 // If you want to start measuring performance in your app, pass a function

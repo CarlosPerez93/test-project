@@ -7,11 +7,12 @@
     padding: 1% 1% 1% 1%;
     display: flex;
     justify-content: space-between;
-    height: 5%;
     align-items: center;
     background: rgba(207, 146, 55, 0.774);
     font-size: 20px;
-    border: solid;
+    &__menu {
+      border: solid;
+    }
     h1 {
       margin: 0;
       height: 50px;
@@ -22,7 +23,10 @@
     }
     &__countCard {
       display: flex;
-      size: 50px;
+      width: auto;
+      height: auto;
+      margin-left: 93%;
+      position: absolute;
       align-items: center;
 
       p {

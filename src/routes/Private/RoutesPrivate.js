@@ -1,22 +1,26 @@
 import { Spin } from 'antd'
 import { lazy, Suspense } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 
 const Home = lazy(() => import('../../views/Home/Home'))
+const Error404 = lazy(() => import('./../../components/Error404'))
 
 const Private = () => {
   return (
-    <BrowserRouter>
-      <Suspense
-        fallback={<Spin style={{ display: 'flex', margin: 'center' }} />}
-      >
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-        </Routes>
-      </Suspense>
-    </BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/home" element={<Home />} />
+    </Routes>
   )
 }
 
 export default Private
+
+{
+  /*   <Suspense
+  fallback={<Spin style={{ display: 'flex', margin: 'center' }} />}
+> */
+}
+{
+  /*  </Suspense> */
+}
