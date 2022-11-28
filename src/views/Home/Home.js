@@ -12,6 +12,7 @@ import AuthContext from '../../context/AuthContext'
 import { Cart } from '../../components/Cart/Cart'
 import { Products } from '../../components/Products/Products'
 import { CartAddProduct } from '../../components/CartAddProduct/CartAddProduct'
+import { Calendari } from '../../components/Calendar/Calendari'
 
 import './Home.scss'
 
@@ -75,29 +76,31 @@ const Home = () => {
           <LogoutOutlined className="home__header__logOut" onClick={logOut} />
         </div>
         <div className="home_body">
-          <p>Take advantage of combos 50% off for a limited time only!</p>
+          <Calendari />
 
-          <Space>
-            <Button type="dashed" onClick={handleShowCardAdd}>
-              <PlusOutlined size={'200px'} />
-              Add Product
-            </Button>
-          </Space>
-
-          <div className="home__body__products">
-            {lisProducts?.map((product, index) => (
-              <Carousel key={index}>
-                <Products
-                  product={product}
-                  cart={cart}
-                  setCart={setCart}
-                  lisProducts={lisProducts}
-                  setListProducts={setListProducts}
-                  deleteProduct={deleteProduct}
-                  putProduct={putProduct}
-                />
-              </Carousel>
-            ))}
+          <div>
+            <p>Take advantage of combos 50% off for a limited time only!</p>
+            <Space>
+              <Button type="dashed" onClick={handleShowCardAdd}>
+                <PlusOutlined size={'200px'} />
+                Add Product
+              </Button>
+            </Space>
+            <div className="home__body__products">
+              {lisProducts?.map((product, index) => (
+                <Carousel autoplay key={index}>
+                  <Products
+                    product={product}
+                    cart={cart}
+                    setCart={setCart}
+                    lisProducts={lisProducts}
+                    setListProducts={setListProducts}
+                    deleteProduct={deleteProduct}
+                    putProduct={putProduct}
+                  />
+                </Carousel>
+              ))}
+            </div>
           </div>
         </div>
       </div>

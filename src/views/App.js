@@ -8,7 +8,7 @@ import './App.css'
 function App() {
   const { auth } = useContext(AuthContext)
 
-  return <div className="App">{auth ? <Private /> : <Public />}</div>
+  return <div className="App">{auth ? <Private /> : <Public />} </div>
 }
 
 export default App
